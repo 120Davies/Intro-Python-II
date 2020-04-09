@@ -1,4 +1,7 @@
 from room import Room
+from player import player
+from item import item
+import textwrap
 
 # Declare all the rooms
 
@@ -33,18 +36,40 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+guide = """Move to different rooms using 'n', 'e', 's', or 'w'. Pick up items
+as you go. Press 'q' to quit. Or just get up and leave, I guess."""
+
+def move(current_room, direction):
+    pass
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+name = input("what is your name? ")
+if name == '':
+    print("That's not going to work. Let's call you Pants, the unspeaking.\n")
+    name = 'Pants'
+player = Player(name, room['outside'])
+
+print(f'Hello {name}.\n')
+
+wrapper = textwrap.TextWrapper(width = 100)
+[print(i) for i in wrapper.wrap(text = guide)]
+print('\n')
+
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+
+player_room = player.c_room
+
+
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
