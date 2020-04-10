@@ -1,4 +1,4 @@
-class item:
+class Item:
 
     def __init__(self, name, description):
         self.name = name
@@ -7,5 +7,5 @@ class item:
     def add_to_room(self, name):
         self.items.append(add_to_room)
 
-    def add_to_inventory(self, name):
-        self.inventory.append(add_to_inventory)
+    def add_to_bag(self, name):
+        self.bag.append(add_to_bag)

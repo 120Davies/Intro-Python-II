@@ -1,9 +1,11 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from bin import Bin
 
-class Room:
+class Room(Bin):
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, items = None):
+        super().__init__(items)
         self.name = name
         self.description = description
         self.n_to = None

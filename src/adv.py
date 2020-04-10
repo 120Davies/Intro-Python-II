@@ -1,6 +1,6 @@
 from room import Room
-from player import player
-from item import item
+from player import Player
+from item import Item
 import textwrap
 
 # Declare all the rooms
@@ -36,11 +36,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-guide = """Move to different rooms using 'n', 'e', 's', or 'w'. Pick up items
-as you go. Press 'q' to quit. Or just get up and leave, I guess."""
-
-def move(current_room, direction):
-    pass
+guide = """Ye find theyself upon adventure. Move ye to different rooms using 'n', 'e', 's', or 'w'. Pick up yonder items
+as thou goest. Press 'q' to quit. Or just get up depart yonder."""
 
 #
 # Main
@@ -48,15 +45,20 @@ def move(current_room, direction):
 
 # Make a new player object that is currently in the 'outside' room.
 
-name = input("what is your name? ")
-if name == '':
+p_name = input("What is your name? ")
+if p_name == '':
     print("That's not going to work. Let's call you Pants, the unspeaking.\n")
-    name = 'Pants'
-player = Player(name, room['outside'])
+    p_name = 'Pants'
 
-print(f'Hello {name}.\n')
 
-wrapper = textwrap.TextWrapper(width = 100)
+p_items = [Item("Taco", "Thy luncheon.")]
+r_items = [Item("Flask", "An iron flask for portable beverage.")]
+player = Player(p_name, room['outside'], items = p_items)
+room['outside'].items = r_items
+
+print(f'Hello {player.name}.\n')
+
+wrapper = textwrap.TextWrapper(width = 50)
 [print(i) for i in wrapper.wrap(text = guide)]
 print('\n')
 
@@ -66,8 +68,16 @@ print('\n')
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
-player_room = player.c_room
 
+done=False
+
+while not done: # Or 'while not done:'
+    print(f'Ye find thyself in yon {player.c_room.name}.\n'
+    f'{player.c_room.description}\n')
+    inp = input()
+    if inp[0] == "q":
+        done = True
+    elif inp[0] == "n":
 
 
 # If the user enters a cardinal direction, attempt to move to the room there.
