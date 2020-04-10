@@ -10,7 +10,9 @@ class Player(Bin):
         self.c_room = c_room
 
     def __str__(self):
-        return f'{self.name}, {self.c_room}'
+        p = "Thou art in"+str(self.c_room) + "\n" + "In thy bag ye have:\n" + "\n".join([str(i) for i in self.items])
+        return p
 
     # def move(self, inp_dir):
-    #     new_room = self.c_room.__dict__[f'(inp_dir)_to']
+    #     n_room = getattr(self.c_room.__dict__[f'(inp_dir)_to'])
+    #

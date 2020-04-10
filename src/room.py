@@ -15,4 +15,5 @@ class Room(Bin):
         self.items = []
 
     def __str__(self):
-        return f'{self.name}, {self.description}'
+        r = self.name + self.description + "\n".join([str(i)] for i in self.items)
+        return r
